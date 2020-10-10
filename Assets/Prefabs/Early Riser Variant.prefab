@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6259494736505265530
+--- !u!1001 &3682729909246707208
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2349227195078359701, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_Name
-      value: Timid Variant
+      value: Early Riser
       objectReference: {fileID: 0}
     - target: {fileID: 3157569810861482031, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 3157569810861482031, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3157569810861482031, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
@@ -67,27 +67,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3196228066810005450, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
-        type: 3}
-      propertyPath: period
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3196228066810005450, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
-        type: 3}
-      propertyPath: verticalAmplitude
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 4371165698321335208, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -8839368762345780380, guid: 37efdb453d0f8decb8a154e8c09a84ce,
+      objectReference: {fileID: -8839368762345780380, guid: aa894717e7659c8dfa28641a734a2d79,
         type: 3}
+    - target: {fileID: 4689946718531461804, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5172122903474271905, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4711208715938537054, guid: 37efdb453d0f8decb8a154e8c09a84ce,
+      objectReference: {fileID: 4711208715938537054, guid: aa894717e7659c8dfa28641a734a2d79,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 055f3213d7fa94e7f9923dfdfc5c6142, type: 3}
