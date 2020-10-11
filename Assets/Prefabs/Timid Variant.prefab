@@ -72,11 +72,6 @@ PrefabInstance:
       propertyPath: period
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 3196228066810005450, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
-        type: 3}
-      propertyPath: verticalAmplitude
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 4371165698321335208, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_Mesh

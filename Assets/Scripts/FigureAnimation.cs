@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FigureMove : MonoBehaviour
+public class FigureAnimation : MonoBehaviour
 {
     [SerializeField] GameObject head, body;
 
