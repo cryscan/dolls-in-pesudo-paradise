@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timid Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2349227195078359701, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
+        type: 3}
+      propertyPath: m_TagString
+      value: Felix
+      objectReference: {fileID: 0}
     - target: {fileID: 3157569810861482031, guid: 055f3213d7fa94e7f9923dfdfc5c6142,
         type: 3}
       propertyPath: m_LocalPosition.x
