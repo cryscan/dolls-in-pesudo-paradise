@@ -272,9 +272,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hold: {fileID: 225061461971261212}
-  collectDistance: 2
   collectLayers:
     serializedVersion: 2
     m_Bits: 1048576
+  collectDistance: 3
   positionFallout: 20
   rotationFallout: 10
+  agentLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  agentDistance: 10

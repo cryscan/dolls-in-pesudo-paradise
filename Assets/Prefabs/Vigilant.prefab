@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3196228066810005450}
   - component: {fileID: 2356282844274876642}
   - component: {fileID: 1947284008084439938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vigilant
   m_TagString: Troy
   m_Icon: {fileID: 0}
