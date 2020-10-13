@@ -10,6 +10,8 @@ public class Shoot : MonoBehaviour, Interactor
 
     [SerializeField] float cooldown = 1;
 
+    [Header("Detect")]
+    [SerializeField] Transform eye;
     [SerializeField] float fieldOfView = 30;
     [SerializeField] LayerMask blockLayers;
 
@@ -56,7 +58,7 @@ public class Shoot : MonoBehaviour, Interactor
     public List<ActionType> DetectActions(Interactable interactable)
     {
         var position = interactable.gameObject.transform.position;
-        var direction = position - transform.position;
+        var direction = position - eye.transform.position;
 
         if (Physics.Raycast(transform.position, direction, blockLayers)) return null;
 

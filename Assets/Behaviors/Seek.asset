@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: Seek
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Seek Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 00000000
+      JSONSerialization: 
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: f9be55564aaa52567707a104
+        startIndex: 000000000100000002000000
+        dataPosition: 000000002900000030000000
+        unityObjects: []
+        byteData: 4265686176696f7244657369676e65722e52756e74696d652e53686172656447616d654f626a6563745375626a65637401
+        byteDataArray: 4265686176696f7244657369676e65722e52756e74696d652e53686172656447616d654f626a6563745375626a65637401
+      Version: 1.6.5

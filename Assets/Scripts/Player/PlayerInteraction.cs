@@ -43,10 +43,14 @@ public class PlayerInteraction : MonoBehaviour
         }
         else SetDisinteracting();
 
-        if (Input.GetButtonDown("Pick") && Physics.Raycast(ray, out hit, collectDistance, collectLayers))
+        if (Input.GetButtonDown("Pick"))
         {
-            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
-            if (interactable) holder.Collect(interactable);
+            if (Physics.Raycast(ray, out hit, collectDistance, collectLayers))
+            {
+                var interactable = hit.collider.gameObject.GetComponent<Interactable>();
+                if (interactable) holder.Collect(interactable);
+            }
+            else holder.Drop();
         }
 
         if (Input.GetButtonDown("Fire1") && Physics.Raycast(ray, out hit))

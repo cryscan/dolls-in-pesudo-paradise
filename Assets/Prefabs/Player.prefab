@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hold: {fileID: 225061461971261212}
+  eye: {fileID: 8807971913350135893}
   detectRange: 4
   blockLayers:
     serializedVersion: 2
@@ -326,6 +327,7 @@ MonoBehaviour:
   positionOffset: 0.2
   rotationOffset: 20
   cooldown: 1
+  eye: {fileID: 8807971913350135893}
   fieldOfView: 30
   blockLayers:
     serializedVersion: 2

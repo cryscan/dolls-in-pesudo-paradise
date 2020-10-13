@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Interactable))]
@@ -7,9 +8,12 @@ public class Collectable : MonoBehaviour
 {
     [SerializeField] float positionFallout = 20;
     [SerializeField] float rotationFallout = 10;
+    [SerializeField] float dropRange = 2;
 
     Interactable interactable;
+    Transform[] dropPoints;
     Holder holder;
+    Transform target;
 
     void Awake()
     {
@@ -18,21 +22,24 @@ public class Collectable : MonoBehaviour
         interactable.OnInteracted += OnDropped;
         interactable.RegisterAction(ActionType.Collect);
         interactable.RegisterAction(ActionType.Drop);
+        interactable.RegisterAction(ActionType.Observe);
+
+        dropPoints = GameObject.FindGameObjectsWithTag("Drop Point").Select(x => x.transform).ToArray();
     }
 
     void Update()
     {
-        if (!holder) return;
+        if (target)
+        {
+            var position = transform.position;
+            var rotation = transform.rotation;
 
-        var position = transform.position;
-        var rotation = transform.rotation;
-        var hold = holder.hold;
+            position = Vector3.Lerp(position, target.position, 1 - Mathf.Exp(-positionFallout * Time.deltaTime));
+            rotation = Quaternion.Slerp(rotation, target.rotation, 1 - Mathf.Exp(-rotationFallout * Time.deltaTime));
 
-        position = Vector3.Lerp(position, hold.position, 1 - Mathf.Exp(-positionFallout * Time.deltaTime));
-        rotation = Quaternion.Slerp(rotation, hold.rotation, 1 - Mathf.Exp(-rotationFallout * Time.deltaTime));
-
-        transform.position = position;
-        transform.rotation = rotation;
+            transform.position = position;
+            transform.rotation = rotation;
+        }
     }
 
     void OnCollected(GameObject subject, ActionType action)
@@ -47,8 +54,9 @@ public class Collectable : MonoBehaviour
         var rb = GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = true;
 
-        var collider = GetComponent<Collider>();
-        if (collider) collider.enabled = false;
+        SetEnabledColliders(false);
+
+        target = holder.hold;
     }
 
     void OnDropped(GameObject subject, ActionType action)
@@ -64,7 +72,33 @@ public class Collectable : MonoBehaviour
         var rb = GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = false;
 
-        var collider = GetComponent<Collider>();
-        if (collider) collider.enabled = true;
+        SetEnabledColliders(true);
+
+        // Search for the nearest drop point.
+        target = null;
+        float minDistance = 1000;
+        foreach (var point in dropPoints)
+        {
+            var distance = Vector3.Distance(point.position, transform.position);
+            if (distance < dropRange && distance < minDistance)
+            {
+                target = point;
+                minDistance = distance;
+            }
+        }
+        StartCoroutine(DropCoroutine());
+    }
+
+    IEnumerator DropCoroutine()
+    {
+        while (target && Vector3.Distance(transform.position, target.position) > 0.1)
+            yield return null;
+        target = null;
+    }
+
+    void SetEnabledColliders(bool enabled)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (var collider in colliders) collider.enabled = enabled;
     }
 }
