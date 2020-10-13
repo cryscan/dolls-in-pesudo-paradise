@@ -8,6 +8,9 @@ public class Holder : MonoBehaviour, Interactor
     [SerializeField] Transform _hold;
     public Transform hold { get => _hold; }
 
+    [SerializeField] float detectRange = 4;
+    [SerializeField] LayerMask blockLayers;
+
     Collectable _holding;
     public Collectable holding { get => _holding; }
 
@@ -38,8 +41,26 @@ public class Holder : MonoBehaviour, Interactor
 
     public List<ActionType> GetActions(Interactable interactable)
     {
-        List<ActionType> actions = new List<ActionType>();
-        if (interactable.actions.Contains(ActionType.Collect)) actions.Add(ActionType.Collect);
+        var actions = new List<ActionType>();
+
+        if (holding == null || interactable.gameObject != holding.gameObject)
+        {
+            if (interactable.actions.Contains(ActionType.Collect))
+                actions.Add(ActionType.Collect);
+        }
+        else actions.Add(ActionType.Drop);
         return actions;
+    }
+
+    public List<ActionType> DetectActions(Interactable interactable)
+    {
+        var position = interactable.gameObject.transform.position;
+        var direction = position - transform.position;
+        direction.y = 0;
+
+        if (direction.magnitude > detectRange) return null;
+        if (Physics.Raycast(transform.position, direction, detectRange, blockLayers)) return null;
+
+        return GetActions(interactable);
     }
 }

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface Interactor
 {
     List<ActionType> GetActions(Interactable interactable);
+    List<ActionType> DetectActions(Interactable interactable);
 }

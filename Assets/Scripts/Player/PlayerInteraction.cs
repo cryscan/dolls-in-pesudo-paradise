@@ -52,7 +52,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Physics.Raycast(ray, out hit))
         {
             var interactable = hit.collider.gameObject.GetComponent<Interactable>();
-            if (interactable) shoot.Fire(interactable);
+            shoot.Fire(interactable);
         }
     }
 

@@ -14,5 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlPrompts:
   - {fileID: 11400000, guid: be7d549dbee85374c9bc44ec76dff247, type: 2}
-  - {fileID: 11400000, guid: 03579616464be0b8684e2868b90aa36a, type: 2}
-  - {fileID: 11400000, guid: 9b3228716a6b4025581607bf78e50bc4, type: 2}

@@ -9,6 +9,10 @@ public class Shoot : MonoBehaviour, Interactor
     [SerializeField] float rotationOffset = 20;
 
     [SerializeField] float cooldown = 1;
+
+    [SerializeField] float fieldOfView = 30;
+    [SerializeField] LayerMask blockLayers;
+
     Holder holder;
 
     bool _canShoot = true;
@@ -27,8 +31,9 @@ public class Shoot : MonoBehaviour, Interactor
         _transform.position += -positionOffset * holder.hold.forward;
         _transform.Rotate(-rotationOffset, 0, 0, Space.Self);
 
-        interactable.Interact(gameObject, ActionType.Shoot);
         StartCoroutine(FireCoroutine());
+
+        if (interactable) interactable.Interact(gameObject, ActionType.Shoot);
     }
 
     IEnumerator FireCoroutine()
@@ -46,5 +51,19 @@ public class Shoot : MonoBehaviour, Interactor
         if (canShoot && HoldingGun() && interactable.actions.Contains(ActionType.Shoot))
             actions.Add(ActionType.Shoot);
         return actions;
+    }
+
+    public List<ActionType> DetectActions(Interactable interactable)
+    {
+        var position = interactable.gameObject.transform.position;
+        var direction = position - transform.position;
+
+        if (Physics.Raycast(transform.position, direction, blockLayers)) return null;
+
+        // Only consider flat angle.
+        direction.y = 0;
+        if (Vector3.Angle(direction, transform.forward) > fieldOfView) return null;
+
+        return GetActions(interactable);
     }
 }

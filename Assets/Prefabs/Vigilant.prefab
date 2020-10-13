@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3196228066810005450}
   - component: {fileID: 2356282844274876642}
   - component: {fileID: 1947284008084439938}
+  - component: {fileID: 9079995190678057823}
   - component: {fileID: 6623438734492628252}
   - component: {fileID: 6690772923308567819}
   - component: {fileID: 291939362052894366}
@@ -99,6 +100,18 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9079995190678057823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349227195078359701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a88a9fc36d63f67a6d65d6129a8c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6623438734492628252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hold: {fileID: 6702649897815709389}
+  detectRange: 4
+  blockLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &6690772923308567819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +144,10 @@ MonoBehaviour:
   positionOffset: 0.2
   rotationOffset: 20
   cooldown: 1
+  fieldOfView: 30
+  blockLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &291939362052894366
 MonoBehaviour:
   m_ObjectHideFlags: 0

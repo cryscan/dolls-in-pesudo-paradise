@@ -31,7 +31,11 @@ public class ControlPromptLister : MonoBehaviour
         }
     }
 
-    public GameObject Find(ActionType action) => children[action];
+    public GameObject Find(ActionType action)
+    {
+        if (children.ContainsKey(action)) return children[action];
+        else return null;
+    }
 
     public void SetActiveAll(bool active)
     {

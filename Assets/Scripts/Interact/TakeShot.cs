@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class TakeShot : MonoBehaviour
 {
-    [SerializeField] float force = 10;
+    [SerializeField] float force = 500;
     Interactable interactable;
 
     void Awake()
@@ -17,6 +17,8 @@ public class TakeShot : MonoBehaviour
 
     void OnTakenShot(GameObject subject, ActionType action)
     {
+        if (action != ActionType.Shoot) return;
+
         var rb = GetComponent<Rigidbody>();
         if (rb)
         {
