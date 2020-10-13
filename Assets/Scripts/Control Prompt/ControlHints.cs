@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(ControlPromptLister))]
@@ -8,6 +9,7 @@ public class ControlHints : MonoBehaviour
     ControlPromptLister lister;
     Camera _camera;
 
+    GameObject player;
     PlayerInteraction interaction;
     Collider interactingCollider;
 
@@ -17,7 +19,7 @@ public class ControlHints : MonoBehaviour
 
         lister = GetComponent<ControlPromptLister>();
 
-        var player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         interaction = player?.GetComponent<PlayerInteraction>();
         interaction.OnInteracted += OnInteracted;
         interaction.OnDisinteracted += () => lister.SetActiveAll(false);
@@ -42,18 +44,21 @@ public class ControlHints : MonoBehaviour
         }
     }
 
-    void OnInteracted(GameObject _object)
+    void OnInteracted(Interactable interactable)
     {
+        if (!interactable) return;
         lister.SetActiveAll(false);
-        List<ActionType> actions;
-        if (interaction.GetActionTypes(_object, out actions))
-        {
-            foreach (var action in actions)
-                lister.Find(action)?.SetActive(true);
 
-            interactingCollider = _object.GetComponent<Collider>();
-            Relocate();
-        }
+        var actions = new List<ActionType>();
+        var interactors = player.GetComponents<Interactor>();
+        foreach (var interactor in interactors)
+            actions = actions.Union(interactor.GetActions(interactable)).ToList();
+
+        foreach (var action in actions)
+            lister.Find(action)?.SetActive(true);
+
+        interactingCollider = interactable.gameObject.GetComponent<Collider>();
+        Relocate();
     }
 
     void OnDisinteracted()

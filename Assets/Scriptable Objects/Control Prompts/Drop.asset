@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b3ae8e8e73afd23b164545c27f275a, type: 3}
-  m_Name: Controls
+  m_Script: {fileID: 11500000, guid: 3dbd6156db7fa0abb9b0159dc743ce1c, type: 3}
+  m_Name: Drop
   m_EditorClassIdentifier: 
-  controlPrompts:
-  - {fileID: 11400000, guid: be7d549dbee85374c9bc44ec76dff247, type: 2}
-  - {fileID: 11400000, guid: 03579616464be0b8684e2868b90aa36a, type: 2}
+  action: 1
+  displayName: Drop
+  sprite: {fileID: 0}
