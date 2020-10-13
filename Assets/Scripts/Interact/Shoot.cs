@@ -21,7 +21,7 @@ public class Shoot : MonoBehaviour, Interactor
 
     public void Fire(Interactable interactable)
     {
-        if (!(_canShoot && holder.holding && holder.holding.gameObject.CompareTag("Handgun"))) return;
+        if (!_canShoot || !HoldingGun()) return;
 
         var _transform = holder.holding.gameObject.transform;
         _transform.position += -positionOffset * holder.hold.forward;
@@ -38,10 +38,12 @@ public class Shoot : MonoBehaviour, Interactor
         _canShoot = true;
     }
 
+    bool HoldingGun() => holder.holding && holder.holding.gameObject.CompareTag("Handgun");
+
     public List<ActionType> GetActions(Interactable interactable)
     {
         var actions = new List<ActionType>();
-        if (canShoot && holder.holding && holder.holding.gameObject.CompareTag("Handgun") && interactable.actions.Contains(ActionType.Shoot))
+        if (canShoot && HoldingGun() && interactable.actions.Contains(ActionType.Shoot))
             actions.Add(ActionType.Shoot);
         return actions;
     }

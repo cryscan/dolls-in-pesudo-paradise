@@ -25,5 +25,12 @@ public class TakeShot : MonoBehaviour
             direction.y = 0;
             rb.AddForce(force * direction.normalized);
         }
+
+        var death = GetComponent<Death>();
+        if (death)
+        {
+            Debug.Log($"{subject.name} kills {gameObject.name}");
+            death.Kill(subject);
+        }
     }
 }
