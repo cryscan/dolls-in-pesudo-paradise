@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9150582218756572286}
   - component: {fileID: 3361651287155772528}
   - component: {fileID: 5283500743181791527}
+  - component: {fileID: 7321920104609730501}
   m_Layer: 20
   m_Name: Handgun
   m_TagString: Handgun
@@ -63,7 +64,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3361651287155772528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aea70c19f298074aa0c8fb6c63923f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actions: 
 --- !u!114 &5283500743181791527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +91,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionFallout: 20
   rotationFallout: 10
+--- !u!114 &7321920104609730501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375049433744642571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853516cb7b6dfe8bb80a5229856d22c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 500
 --- !u!1001 &5714522308070869637
 PrefabInstance:
   m_ObjectHideFlags: 0

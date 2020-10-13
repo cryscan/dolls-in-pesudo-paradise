@@ -10,6 +10,7 @@ public enum ActionType
 {
     Collect,
     Drop,
+    Shoot,
 }
 
 [CreateAssetMenu(fileName = "New Control Prompt", menuName = "Control Prompt/Control Prompt")]

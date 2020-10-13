@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Interact")]
-    [SerializeField] LayerMask interactLayers;
-    [SerializeField] float interactDistance = 3;
+    [Header("Prompt")]
+    [SerializeField] LayerMask promptLayers;
+    [SerializeField] float promptDistance = 3;
+    Interactable prompting;
 
     [Header("Collect")]
+    [SerializeField] LayerMask collectLayers;
+    [SerializeField] float collectDistance = 3;
     Holder holder;
 
-    [Header("Agent")]
-    [SerializeField] LayerMask agentLayers;
-    [SerializeField] float agentDistance = 10;
+    Shoot shoot;
 
     Camera _camera;
-    Interactable interacting;
 
     public delegate void InteractCallback(Interactable interactable);
     public event InteractCallback OnInteracted;
@@ -27,51 +27,48 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         holder = GetComponent<Holder>();
+        shoot = GetComponent<Shoot>();
         _camera = Camera.main;
     }
 
     void Update()
     {
-        RayTest();
-    }
-
-    void RayTest()
-    {
         Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, interactDistance, interactLayers))
-        {
-            var _object = hit.collider.gameObject;
-            SetInteracting(_object);
-            if (!interacting) return;
 
-            if (Input.GetButtonDown("Pick"))
-            {
-                holder.Collect(interacting);
-                // OnCollected?.Invoke(interacting);
-            }
-        }
-        else if (Physics.Raycast(ray, out hit, agentDistance, agentLayers))
+        if (Physics.Raycast(ray, out hit, promptDistance, promptLayers))
         {
             var _object = hit.collider.gameObject;
             SetInteracting(_object);
         }
         else SetDisinteracting();
+
+        if (Input.GetButtonDown("Pick") && Physics.Raycast(ray, out hit, collectDistance, collectLayers))
+        {
+            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            if (interactable) holder.Collect(interactable);
+        }
+
+        if (Input.GetButtonDown("Fire1") && Physics.Raycast(ray, out hit))
+        {
+            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            if (interactable) shoot.Fire(interactable);
+        }
     }
 
     void SetInteracting(GameObject _object)
     {
-        if (interacting && interacting.gameObject == _object) return;
-        Debug.Log($"Player interacting {_object.ToString()}");
+        if (prompting && prompting.gameObject == _object) return;
+        Debug.Log($"Player interacting {_object.name}");
 
         var next = _object.GetComponent<Interactable>();
         OnInteracted?.Invoke(next);
-        interacting = next;
+        prompting = next;
     }
 
     void SetDisinteracting()
     {
-        if (interacting != null) OnDisinteracted?.Invoke();
-        interacting = null;
+        if (prompting != null) OnDisinteracted?.Invoke();
+        prompting = null;
     }
 }
