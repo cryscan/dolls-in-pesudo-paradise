@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
     [SerializeField] float dropRange = 2;
 
     Interactable interactable;
-    Transform[] dropPoints;
+    List<DropPoint> dropPoints;
     Holder holder;
     Transform target;
 
@@ -24,7 +24,7 @@ public class Collectable : MonoBehaviour
         interactable.RegisterAction(ActionType.Drop);
         interactable.RegisterAction(ActionType.Observe);
 
-        dropPoints = GameObject.FindGameObjectsWithTag("Drop Point").Select(x => x.transform).ToArray();
+        dropPoints = FindObjectsOfType<DropPoint>().ToList();
     }
 
     void Update()
@@ -74,18 +74,14 @@ public class Collectable : MonoBehaviour
 
         SetEnabledColliders(true);
 
-        // Search for the nearest drop point.
-        target = null;
-        float minDistance = 1000;
-        foreach (var point in dropPoints)
+        var candidates = dropPoints.FindAll(x => Vector3.Distance(x.transform.position, transform.position) < dropRange);
+        if (candidates.Count > 0)
         {
-            var distance = Vector3.Distance(point.position, transform.position);
-            if (distance < dropRange && distance < minDistance)
-            {
-                target = point;
-                minDistance = distance;
-            }
+            var min = candidates.Min(x => x.priority);
+            target = candidates.Find(x => x.priority == min).transform;
         }
+        else target = null;
+
         StartCoroutine(DropCoroutine());
     }
 

@@ -144,7 +144,7 @@ MonoBehaviour:
   force: 500
   blockLayers:
     serializedVersion: 2
-    m_Bits: 786433
+    m_Bits: 262145
 --- !u!114 &291939362052894366
 MonoBehaviour:
   m_ObjectHideFlags: 0

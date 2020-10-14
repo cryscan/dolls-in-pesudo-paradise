@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectableLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
+  radius: 0.1
 --- !u!114 &8130971326349856017
 MonoBehaviour:
   m_ObjectHideFlags: 0
