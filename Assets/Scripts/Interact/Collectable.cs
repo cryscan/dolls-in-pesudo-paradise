@@ -12,7 +12,10 @@ public class Collectable : MonoBehaviour
 
     Interactable interactable;
     List<DropPoint> dropPoints;
-    Holder holder;
+
+    Holder _holder;
+    public Holder holder { get => _holder; }
+
     Transform target;
 
     void Awake()
@@ -46,8 +49,8 @@ public class Collectable : MonoBehaviour
     {
         if (action != ActionType.Collect) return;
 
-        holder = subject.GetComponent<Holder>();
-        if (!holder) return;
+        _holder = subject.GetComponent<Holder>();
+        if (!_holder) return;
 
         // holder.SetHolding(this);
 
@@ -56,18 +59,18 @@ public class Collectable : MonoBehaviour
 
         SetEnabledColliders(false);
 
-        target = holder.hold;
+        target = _holder.hold;
     }
 
     void OnDropped(GameObject subject, ActionType action, Interactable.Data data)
     {
         if (action != ActionType.Drop) return;
 
-        Debug.Assert(subject.GetComponent<Holder>() == holder);
-        Debug.Assert(holder.holding == this);
+        Debug.Assert(subject.GetComponent<Holder>() == _holder);
+        Debug.Assert(_holder.holding == this);
 
         // holder.SetHolding();
-        holder = null;
+        _holder = null;
 
         var rb = GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = false;

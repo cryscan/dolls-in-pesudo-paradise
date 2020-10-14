@@ -53,5 +53,9 @@ public class FigureAnimation : MonoBehaviour
         }
     }
 
-    public void SetTargetBlend(float blend) => targetBlend = blend;
+    public void SetTargetBlend(float blend)
+    {
+        Debug.Log($"Target blend set to {blend}");
+        targetBlend = blend;
+    }
 }

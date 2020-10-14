@@ -6,13 +6,22 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class CanPerformAction : Conditional
 {
+    public SharedGameObject subject;
+    public SharedGameObject target;
     public ActionType action;
-    public InteractDetector subject;
-    public Interactable _object;
+
+    InteractDetector detector;
+    Interactable interactable;
+
+    public override void OnStart()
+    {
+        detector = subject.Value.GetComponent<InteractDetector>();
+        interactable = target.Value.GetComponent<Interactable>();
+    }
 
     public override TaskStatus OnUpdate()
     {
-        if (subject.GetActions(_object).Contains(action)) return TaskStatus.Success;
+        if (detector.GetActions(interactable).Contains(action)) return TaskStatus.Success;
         else return TaskStatus.Failure;
     }
 }

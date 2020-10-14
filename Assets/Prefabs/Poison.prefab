@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5581198125078856496}
   m_Layer: 20
   m_Name: Poison
-  m_TagString: Untagged
+  m_TagString: Poison
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionFallout: 20
   rotationFallout: 10
+  dropRange: 2
 --- !u!114 &5581198125078856496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853516cb7b6dfe8bb80a5229856d22c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 500
 --- !u!1001 &2680783788807721237
 PrefabInstance:
   m_ObjectHideFlags: 0

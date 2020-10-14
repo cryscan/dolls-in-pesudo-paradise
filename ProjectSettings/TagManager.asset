@@ -9,6 +9,7 @@ TagManager:
   - Cup
   - Handgun
   - Drop Point
+  - Poison
   layers:
   - Default
   - TransparentFX

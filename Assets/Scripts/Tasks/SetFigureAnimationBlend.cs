@@ -6,12 +6,13 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class SetFigureAnimationBlend : Action
 {
-    public FigureAnimation animation;
+    public SharedGameObject subject;
     public float blend;
+    FigureAnimation animation;
 
-    public override void OnAwake()
+    public override void OnStart()
     {
-        if (animation == null) animation = GetComponent<FigureAnimation>();
+        animation = subject.Value.GetComponent<FigureAnimation>();
     }
 
     public override TaskStatus OnUpdate()

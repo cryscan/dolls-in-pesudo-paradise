@@ -5,7 +5,7 @@ using UnityEngine;
 public class Memory : MonoBehaviour
 {
     [SerializeField] List<Collectable> collectables;
-    Dictionary<Collectable, Vector3> collectablePositions;
+    Dictionary<Collectable, Vector3> collectablePositions = new Dictionary<Collectable, Vector3>();
 
     void Awake()
     {
