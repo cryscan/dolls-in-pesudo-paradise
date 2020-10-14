@@ -14,7 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] float collectDistance = 2;
     Holder holder;
 
-    Shoot shoot;
+    Shooter shoot;
 
     Camera _camera;
 
@@ -27,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         holder = GetComponent<Holder>();
-        shoot = GetComponent<Shoot>();
+        shoot = GetComponent<Shooter>();
         _camera = Camera.main;
     }
 
@@ -50,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
                 var interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 if (interactable) holder.Collect(interactable);
             }
-            else holder.Drop();
+            // else holder.Drop();
         }
 
         if (Input.GetButtonDown("Fire1") && Physics.Raycast(ray, out hit))

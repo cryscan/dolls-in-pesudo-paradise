@@ -2,23 +2,29 @@ using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-public class PerformCollect : Action
+public class PerformShoot : Action
 {
     public SharedGameObject subject;
     public SharedGameObject target;
 
-    Holder holder;
+    Shooter shooter;
     Interactable interactable;
 
     public override void OnStart()
     {
-        holder = subject.Value.GetComponent<Holder>();
+        shooter = subject.Value.GetComponent<Shooter>();
         interactable = target.Value.GetComponent<Interactable>();
     }
 
     public override TaskStatus OnUpdate()
     {
-        holder.Collect(interactable);
+        TakeShot.ShootData shootData = new TakeShot.ShootData();
+        shootData.center = true;
+        shootData.position = Vector3.zero;
+        shootData.force = Vector3.zero;
+
+        shooter.Fire(interactable, shootData);
+
         return TaskStatus.Success;
     }
 }

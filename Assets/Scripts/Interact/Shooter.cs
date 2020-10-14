@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Holder))]
-public class Shoot : MonoBehaviour, Interactor
+public class Shooter : MonoBehaviour, Interactor
 {
     [SerializeField] float positionOffset = 0.2f;
     [SerializeField] float rotationOffset = 20;
@@ -19,6 +19,9 @@ public class Shoot : MonoBehaviour, Interactor
     bool _canShoot = true;
     public bool canShoot { get => _canShoot; }
 
+    public delegate void FireCallback();
+    public event FireCallback OnFire;
+
     void Awake()
     {
         holder = GetComponent<Holder>();
@@ -31,6 +34,8 @@ public class Shoot : MonoBehaviour, Interactor
         var trans = holder.holding.gameObject.transform;
         trans.position += -positionOffset * holder.hold.forward;
         trans.Rotate(-rotationOffset, 0, 0, Space.Self);
+
+        OnFire?.Invoke();
 
         StartCoroutine(FireCoroutine());
 

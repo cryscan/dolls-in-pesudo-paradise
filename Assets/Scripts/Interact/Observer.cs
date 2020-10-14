@@ -5,7 +5,8 @@ using UnityEngine;
 public class Observer : MonoBehaviour, Interactor
 {
     [Header("Detect")]
-    [SerializeField] float detectRange = 3;
+    [SerializeField] float detectRange = 4;
+    [SerializeField] float angle = 60;
 
     public List<ActionType> GetActions(Interactable interactable)
     {
@@ -15,6 +16,9 @@ public class Observer : MonoBehaviour, Interactor
         var direction = position - transform.position;
 
         if (direction.magnitude > detectRange) return actions;
+
+        direction.y = 0;
+        if (Vector3.Angle(direction, transform.forward) > angle) return actions;
 
         if (interactable.actions.Contains(ActionType.Observe)) actions.Add(ActionType.Observe);
         return actions;
