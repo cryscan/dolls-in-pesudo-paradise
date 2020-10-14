@@ -5,7 +5,7 @@ using UnityEngine;
 public class Observer : MonoBehaviour, Interactor
 {
     [Header("Detect")]
-    [SerializeField] float detectRange = 4;
+    [SerializeField] float detectRange = 3;
 
     public List<ActionType> GetActions(Interactable interactable)
     {

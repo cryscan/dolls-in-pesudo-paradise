@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5669662299848998354}
   - component: {fileID: 8127347470525882181}
-  - component: {fileID: 8130971326349856017}
   m_Layer: 0
   m_Name: Drop Point
   m_TagString: Drop Point
@@ -49,19 +48,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1048576
   radius: 0.1
---- !u!114 &8130971326349856017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278030398231392643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c659f360a41ff2ad586f0704942cd59c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _priority: 0
 --- !u!1 &5724934948264502724
 GameObject:
   m_ObjectHideFlags: 0

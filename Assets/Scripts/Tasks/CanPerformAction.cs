@@ -13,14 +13,13 @@ public class CanPerformAction : Conditional
     InteractDetector detector;
     Interactable interactable;
 
-    public override void OnStart()
-    {
-        detector = subject.Value.GetComponent<InteractDetector>();
-        interactable = target.Value.GetComponent<Interactable>();
-    }
-
     public override TaskStatus OnUpdate()
     {
+        if (target.Value == null) return TaskStatus.Failure;
+
+        detector = subject.Value.GetComponent<InteractDetector>();
+        interactable = target.Value.GetComponent<Interactable>();
+
         if (detector.GetActions(interactable).Contains(action)) return TaskStatus.Success;
         else return TaskStatus.Failure;
     }
