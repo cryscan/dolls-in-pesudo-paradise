@@ -9,10 +9,9 @@ public class Shoot : MonoBehaviour, Interactor
     [SerializeField] float rotationOffset = 20;
 
     [SerializeField] float cooldown = 1;
+    [SerializeField] float force = 500;
 
     [Header("Detect")]
-    [SerializeField] Transform eye;
-    [SerializeField] float fieldOfView = 30;
     [SerializeField] LayerMask blockLayers;
 
     Holder holder;
@@ -25,17 +24,28 @@ public class Shoot : MonoBehaviour, Interactor
         holder = GetComponent<Holder>();
     }
 
-    public void Fire(Interactable interactable)
+    public void Fire(Interactable interactable, TakeShot.ShootData shootData)
     {
         if (!_canShoot || !HoldingGun()) return;
 
-        var _transform = holder.holding.gameObject.transform;
-        _transform.position += -positionOffset * holder.hold.forward;
-        _transform.Rotate(-rotationOffset, 0, 0, Space.Self);
+        var trans = holder.holding.gameObject.transform;
+        trans.position += -positionOffset * holder.hold.forward;
+        trans.Rotate(-rotationOffset, 0, 0, Space.Self);
 
         StartCoroutine(FireCoroutine());
 
-        if (interactable) interactable.Interact(gameObject, ActionType.Shoot);
+        if (!interactable) return;
+
+        if (shootData == null)
+        {
+            shootData = new TakeShot.ShootData();
+            shootData.center = true;
+        }
+
+        var target = interactable.gameObject.transform;
+        shootData.force = force * (target.position - holder.hold.position).normalized;
+
+        interactable.Interact(gameObject, ActionType.Shoot, shootData);
     }
 
     IEnumerator FireCoroutine()
@@ -50,22 +60,14 @@ public class Shoot : MonoBehaviour, Interactor
     public List<ActionType> GetActions(Interactable interactable)
     {
         var actions = new List<ActionType>();
-        if (canShoot && HoldingGun() && interactable.actions.Contains(ActionType.Shoot))
-            actions.Add(ActionType.Shoot);
-        return actions;
-    }
 
-    public List<ActionType> DetectActions(Interactable interactable)
-    {
         var position = interactable.gameObject.transform.position;
-        var direction = position - eye.transform.position;
+        var direction = position - holder.hold.transform.position;
+        if (Physics.Raycast(transform.position, direction, direction.magnitude, blockLayers)) return actions;
 
-        if (Physics.Raycast(transform.position, direction, blockLayers)) return null;
+        if (!canShoot || !HoldingGun()) return actions;
+        if (interactable.actions.Contains(ActionType.Shoot)) actions.Add(ActionType.Shoot);
 
-        // Only consider flat angle.
-        direction.y = 0;
-        if (Vector3.Angle(direction, transform.forward) > fieldOfView) return null;
-
-        return GetActions(interactable);
+        return actions;
     }
 }

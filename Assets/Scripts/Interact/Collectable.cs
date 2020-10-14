@@ -42,7 +42,7 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    void OnCollected(GameObject subject, ActionType action)
+    void OnCollected(GameObject subject, ActionType action, Interactable.Data data)
     {
         if (action != ActionType.Collect) return;
 
@@ -59,7 +59,7 @@ public class Collectable : MonoBehaviour
         target = holder.hold;
     }
 
-    void OnDropped(GameObject subject, ActionType action)
+    void OnDropped(GameObject subject, ActionType action, Interactable.Data data)
     {
         if (action != ActionType.Drop) return;
 

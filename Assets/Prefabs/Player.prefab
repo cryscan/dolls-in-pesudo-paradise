@@ -277,11 +277,11 @@ MonoBehaviour:
   promptLayers:
     serializedVersion: 2
     m_Bits: 1048832
-  promptDistance: 3
+  promptDistance: 2
   collectLayers:
     serializedVersion: 2
     m_Bits: 1048576
-  collectDistance: 3
+  collectDistance: 2
 --- !u!114 &1325788105644149993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,11 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hold: {fileID: 225061461971261212}
-  eye: {fileID: 8807971913350135893}
-  detectRange: 4
-  blockLayers:
-    serializedVersion: 2
-    m_Bits: 1
+  detectRange: 2
 --- !u!114 &5550759593776597730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,8 +323,7 @@ MonoBehaviour:
   positionOffset: 0.2
   rotationOffset: 20
   cooldown: 1
-  eye: {fileID: 8807971913350135893}
-  fieldOfView: 30
+  force: 500
   blockLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 786433

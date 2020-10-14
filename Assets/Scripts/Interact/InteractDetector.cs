@@ -20,7 +20,7 @@ public class InteractDetector : MonoBehaviour
 
         foreach (var interactor in interactors)
         {
-            var actions = interactor.DetectActions(interactable);
+            var actions = interactor.GetActions(interactable);
             if (actions == null) continue;
             results = results.Union(actions).ToList();
         }
@@ -35,7 +35,7 @@ public class InteractDetector : MonoBehaviour
         {
             foreach (var interactable in interactables)
             {
-                var actions = interactor.DetectActions(interactable);
+                var actions = interactor.GetActions(interactable);
                 if (actions == null) continue;
 
                 if (!results.ContainsKey(interactable)) results.Add(interactable, actions);

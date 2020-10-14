@@ -5,7 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class TakeShot : MonoBehaviour
 {
-    [SerializeField] float force = 500;
+    public class ShootData : Interactable.Data
+    {
+        public Vector3 position;
+        public Vector3 force;
+        public bool center;
+    }
+
     Interactable interactable;
 
     void Awake()
@@ -15,17 +21,17 @@ public class TakeShot : MonoBehaviour
         interactable.RegisterAction(ActionType.Shoot);
     }
 
-    void OnTakenShot(GameObject subject, ActionType action)
+    void OnTakenShot(GameObject subject, ActionType action, Interactable.Data data)
     {
         if (action != ActionType.Shoot) return;
 
         var rb = GetComponent<Rigidbody>();
-        if (rb)
+        ShootData shootData = (ShootData)data;
+        if (rb && (shootData != null))
         {
             Debug.Log($"{subject.name} shoots {gameObject.name}");
-            var direction = transform.position - subject.transform.position;
-            direction.y = 0;
-            rb.AddForce(force * direction.normalized);
+            if (shootData.center) rb.AddForce(shootData.force);
+            else rb.AddForceAtPosition(shootData.force, shootData.position);
         }
 
         var death = GetComponent<Death>();

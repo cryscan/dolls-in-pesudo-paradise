@@ -6,12 +6,12 @@ public class PlayerInteraction : MonoBehaviour
 {
     [Header("Prompt")]
     [SerializeField] LayerMask promptLayers;
-    [SerializeField] float promptDistance = 3;
+    [SerializeField] float promptDistance = 2;
     Interactable prompting;
 
     [Header("Collect")]
     [SerializeField] LayerMask collectLayers;
-    [SerializeField] float collectDistance = 3;
+    [SerializeField] float collectDistance = 2;
     Holder holder;
 
     Shoot shoot;
@@ -56,7 +56,13 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Physics.Raycast(ray, out hit))
         {
             var interactable = hit.collider.gameObject.GetComponent<Interactable>();
-            shoot.Fire(interactable);
+
+            var shootData = new TakeShot.ShootData();
+            shootData.center = false;
+            shootData.position = hit.point;
+            shootData.force = Vector3.zero;
+
+            shoot.Fire(interactable, shootData);
         }
     }
 
