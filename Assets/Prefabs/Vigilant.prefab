@@ -140,6 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectRange: 3
+  angle: 60
+  blockLayers:
+    serializedVersion: 2
+    m_Bits: 786433
 --- !u!114 &6623438734492628252
 MonoBehaviour:
   m_ObjectHideFlags: 0

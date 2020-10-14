@@ -7,6 +7,7 @@ public class Observer : MonoBehaviour, Interactor
     [Header("Detect")]
     [SerializeField] float detectRange = 4;
     [SerializeField] float angle = 60;
+    [SerializeField] LayerMask blockLayers;
 
     public List<ActionType> GetActions(Interactable interactable)
     {
@@ -16,6 +17,7 @@ public class Observer : MonoBehaviour, Interactor
         var direction = position - transform.position;
 
         if (direction.magnitude > detectRange) return actions;
+        if (Physics.Raycast(transform.position, direction, direction.magnitude, blockLayers)) return actions;
 
         direction.y = 0;
         if (Vector3.Angle(direction, transform.forward) > angle) return actions;

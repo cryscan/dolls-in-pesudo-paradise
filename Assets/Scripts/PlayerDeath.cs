@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
+    [SerializeField] GameObject deathText;
+
     Death death;
     PlayerMovement movement;
     PlayerLook look;
@@ -33,5 +35,8 @@ public class PlayerDeath : MonoBehaviour
         shooter.enabled = false;
 
         Time.timeScale = 0.1f;
+
+        deathText.SetActive(true);
+        GameManager.instance.dead = true;
     }
 }
