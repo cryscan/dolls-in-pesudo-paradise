@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
             ending = false;
             SceneManager.LoadScene(0);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 
     public void Win(int index)

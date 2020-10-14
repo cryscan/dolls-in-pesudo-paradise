@@ -1,0 +1,5 @@
+Many play-testers complained that my gold spike game does not run on MAC OSX. I have taken care of that this time.
+
+One play-tester said that my pure-text UI is not understandable so this time I remove texts that just show up, but use dialogues to inform player. I also made 3D scenes to dramatize.
+
+Some play-testers thought I should make a more complex story. Though my gold-spike has shown off my narrative generation, I found it very hard to create so many story fragments that are enough for a complex and interesting story in a week. So I put more focus on the actual game-play, that is, player's each action will have impact on the final outcome.
